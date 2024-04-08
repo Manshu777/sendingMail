@@ -24,7 +24,7 @@ let transporter = nodemailer.createTransport({
 });
 
 
-app.get("/sendmail", (req, res) => {
+app.post("/sendmail", (req, res) => {
    
     console.log(req.body)
     
@@ -34,7 +34,7 @@ app.get("/sendmail", (req, res) => {
     const email = req.body.S_email;
     const message = req.body.message;
 
-    // Setup email data
+    
     let mailOptions = {
         from: 'manshusmartboy@gmail.com', 
         to: 'manshusmartboy@gmail.com', 
