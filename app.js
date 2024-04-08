@@ -36,8 +36,8 @@ app.post("/sendmail", (req, res) => {
 
     
     let mailOptions = {
-        from: 'manshusmartboy@gmail.com', 
-        to: 'manshusmartboy@gmail.com', 
+        from: 'Shettysairamesh@gmail.com', 
+        to: 'rahulrajput82198@gmail.com', 
         subject: 'Appointment Booking', 
         text: `Doctor: ${doctorName}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Plain text body
     };
