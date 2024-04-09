@@ -28,30 +28,39 @@ app.post("/sendmail", (req, res) => {
    
     console.log(req.body)
     
-    const doctorName = req.body.doctor_name;
-    const name = req.body.S_name;
-    const phone = req.body.S_phone;
-    const email = req.body.S_email;
-    const message = req.body.message;
-// Shettysairamesh@gmail.com
+    const doctorName = req.body.doctor_name || '';
+    const name = req.body.S_name || '';
+    const phone = req.body.S_phone || '';
+    const email = req.body.S_email || '';
+    const message = req.body.message || '';
+
+
+    let htmlBody = `
+      ${doctorName ?  <p><strong>Doctor:</strong> ${doctorName}</p> : ''}
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong> ${message}</p>
+    `;
     
     let mailOptions = {
         from: 'futuretouchs@gmail.com', 
         to: 'manshusmartboy@gmail.com', 
         subject: 'Appointment Booking', 
-        text: `Doctor: ${doctorName}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Plain text body
+        html: htmlBody // HTML formatted body
     };
 
-transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-        return console.log('Error occurred:', error);
-    }
-    console.log('Email sent:', info.response);
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log('Error occurred:', error);
+        }
+        console.log('Email sent:', info.response);
+    });
+
+    res.send('Email sent');
+
 });
 
- res.send('email sent')
-
-})
 
 
 app.listen(9000,()=>{
