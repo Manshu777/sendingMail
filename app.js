@@ -33,21 +33,27 @@ app.post("/sendmail", (req, res) => {
     const phone = req.body.S_phone || '';
     const email = req.body.S_email || '';
     const message = req.body.message || '';
+    const Location_form = req.body.Location_form || '';
+    const Location_to = req.body.Location_to || '';
+
 
 
     let htmlBody = `
-      ${doctorName ?  <p><strong>Doctor:</strong> ${doctorName}</p> : ''}
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
+        ${doctorName ? '<p><strong>Doctor:</strong> ' + doctorName + '</p>' : ''}
+        ${name ? '<p><strong>Name:</strong> ' + name + '</p>' : ''}
+        ${phone ? '<p><strong>Phone:</strong> ' + phone + '</p>' : ''}
+        ${email ? '<p><strong>Email:</strong> ' + email + '</p>' : ''}
+        ${Location_form ? '<p><strong>Location Form:</strong> ' + Location_form + '</p>' : ''}
+        ${Location_to ? '<p><strong>Location To:</strong> ' + Location_to + '</p>' : ''}
+
+        ${message ? '<p><strong>Message:</strong> ' + message + '</p>' : ''}
     `;
     
     let mailOptions = {
         from: 'futuretouchs@gmail.com', 
         to: 'manshusmartboy@gmail.com', 
         subject: 'Appointment Booking', 
-        html: htmlBody // HTML formatted body
+        html: htmlBody
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -60,6 +66,7 @@ app.post("/sendmail", (req, res) => {
     res.send('Email sent');
 
 });
+
 
 
 
