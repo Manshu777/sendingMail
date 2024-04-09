@@ -18,8 +18,8 @@ app.get('/', (req, res) => {
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'manshusmartboy@gmail.com', 
-        pass: 'qvzlmryrbryqfbzd' 
+        user: 'futuretouchs@gmail.com', 
+        pass: 'ufvmdzzopesgubhg' 
     }
 });
 
@@ -33,11 +33,11 @@ app.post("/sendmail", (req, res) => {
     const phone = req.body.S_phone;
     const email = req.body.S_email;
     const message = req.body.message;
-
+// Shettysairamesh@gmail.com
     
     let mailOptions = {
         from: 'futuretouchs@gmail.com', 
-        to: 'Shettysairamesh@gmail.com', 
+        to: 'manshusmartboy@gmail.com', 
         subject: 'Appointment Booking', 
         text: `Doctor: ${doctorName}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}` // Plain text body
     };
